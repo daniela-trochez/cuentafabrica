@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TipoTransaccion;
 use Illuminate\Http\Request;
 
-class ControllerTipoTransaccion extends Controller
+class TipoTransaccionController extends Controller
 {
     /**
      * Display a listing of the resource.
