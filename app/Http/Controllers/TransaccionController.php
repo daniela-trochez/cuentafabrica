@@ -35,9 +35,12 @@ class TransaccionController extends Controller
         $transaccion = Transaccion::findOrFail($id);
 
         $validatedData = $request->validate([
-            'monto' => 'required|numeric',
-            'descripcion' => 'nullable|string',
-            'tipo_transaccion_id' => 'required|exists:tipo_transaccions,id'
+            'amount' => 'required|numeric',
+            'descripcion' => 'required|string',
+            'date' => 'required|date',
+            
+            'tipo_transaccion_id' => 'required|exists:tipo_transaccions,id',
+
         ]);
 
         $transaccion->update($validatedData);
