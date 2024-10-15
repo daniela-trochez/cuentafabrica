@@ -16,6 +16,8 @@ class TipoTransaccion extends Model
    
     protected $fillable = ['name'];
 
+
+    
  
     public function transaccions()
     {

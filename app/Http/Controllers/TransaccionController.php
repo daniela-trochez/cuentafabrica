@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaccionController extends Controller
 {
@@ -14,15 +15,12 @@ class TransaccionController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'amount' => 'required|numeric',
-            'descripcion' => 'nullable|string',
-            'tipo_transaccion_id' => 'required|exists:tipo_transaccions,id',
-            'date'=> 'required'
-
-        ]);
-
-        return Transaccion::create($validatedData);
+        $data = $request->all();
+        $user_id = Auth::id();
+        $data['user_id']= $user_id;
+        var_dump($data['user_id']);
+        $transaccion = Transaccion::create($data);
+        return response()->json($transaccion);
     }
 
     public function show($id)
@@ -40,6 +38,7 @@ class TransaccionController extends Controller
             'date' => 'required|date',
             
             'tipo_transaccion_id' => 'required|exists:tipo_transaccions,id',
+            
 
         ]);
 
